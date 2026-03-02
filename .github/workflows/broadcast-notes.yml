@@ -1,0 +1,77 @@
+name: 🚀 QuantAgri Daily Notes
+
+on:
+  schedule:
+    # EST → UTC: +5 hours
+    - cron: '0 16 * * *'  # 11am EST: SOY
+    - cron: '0 17 * * *'  # 12pm EST: COTTON  
+    - cron: '0 18 * * *'  # 1pm EST: CORN
+    - cron: '0 19 * * *'  # 2pm EST: WHEAT
+    - cron: '0 20 * * *'  # 3pm EST: SUGAR
+  workflow_dispatch:  # Manual trigger dropdown
+
+jobs:
+  soy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: 📤 Broadcast Soy Note
+        run: python broadcast.py soy
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+  cotton:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: 📤 Broadcast Cotton Note
+        run: python broadcast.py cotton
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+  corn:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: 📤 Broadcast Corn Note
+        run: python broadcast.py corn
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+  wheat:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: 📤 Broadcast Wheat Note
+        run: python broadcast.py wheat
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
+
+  sugar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install -r requirements.txt
+      - name: 📤 Broadcast Sugar Note
+        run: python broadcast.py sugar
+        env:
+          API_KEY: ${{ secrets.API_KEY }}
